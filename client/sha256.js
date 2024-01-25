@@ -15,19 +15,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var asm_sha256 = require('./sha256/exports.js');
-var old = require('./SHA256.js');
-var Common = require('./Common');
+var CryptoJS = require('crypto-js');
 
 /*::
 export type Sha256_t = string;
 */
 
-var encodeText = function (str) {
+function encodeText(str) {
     // Use TextEncoder to properly encode the input string
     var textEncoder = new TextEncoder();
     return textEncoder.encode(str);
-};
+}
 
 module.exports.check = function (hex /*:any*/) /*:Sha256_t*/ {
     if (typeof(hex) !== 'string') { throw new Error(); }
