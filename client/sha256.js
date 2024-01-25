@@ -23,12 +23,10 @@ var Common = require('./Common');
 export type Sha256_t = string;
 */
 
-var brokenTextEncode = function (str) {
-    var out = new Uint8Array(str.length);
-    for (var i = 0; i < str.length; i++) {
-        out[i] = str.charCodeAt(i) & 0xff;
-    }
-    return out;
+var encodeText = function (str) {
+    // Use TextEncoder to properly encode the input string
+    var textEncoder = new TextEncoder();
+    return textEncoder.encode(str);
 };
 
 module.exports.check = function (hex /*:any*/) /*:Sha256_t*/ {
